@@ -3955,8 +3955,8 @@ input, select, textarea {
 #banner .profile-pic {
   float: left;
   margin: 0 1rem 1rem 0;  /* small right/bottom gap */
-  width: 64px;            /* half of your previous 64px size */
-  height: 64px;
+  width: 1024px;            /* half of your previous 64px size */
+  height: 1024px;
   object-fit: cover;
   border-radius: 50%;
 }
