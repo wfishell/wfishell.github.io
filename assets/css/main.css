@@ -29,6 +29,8 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+
+
 body {
 	line-height: 1;
 }
@@ -3950,3 +3952,11 @@ input, select, textarea {
 			opacity: 1;
 			visibility: visible;
 		}
+#banner .profile-pic {
+  float: left;
+  margin: 0 1rem 1rem 0;  /* small right/bottom gap */
+  width: 32px;            /* half of your previous 64px size */
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+}
