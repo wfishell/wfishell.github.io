@@ -3953,14 +3953,17 @@ input, select, textarea {
 			visibility: visible;
 		}
 #banner .profile-container {
+  width: 256px;
+  max-width: 100%;
   overflow: hidden;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
 }
 
 #banner .profile-pic {
-  float: left;
-  margin: 0 1rem 1rem 0;
-  width: 256px;
+  width: 100%;
   height: auto;
+  display: block;
+  clip-path: ellipse(70% 90% at 50% 50%);
   -webkit-clip-path: ellipse(70% 90% at 50% 50%);
-          clip-path: ellipse(70% 90% at 50% 50%); 
 }
