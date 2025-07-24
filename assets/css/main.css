@@ -3957,6 +3957,6 @@ input, select, textarea {
   margin: 0 1rem 1rem 0;  /* small right/bottom gap */
   width: 256px;            /* half of your previous 64px size */
   height: auto;
-  object-fit: contain;
-  border-radius: 0;
+  object-fit: cover;
+  clip-path: ellipse(70% 90% at 50% 50%)
 }
