@@ -3952,6 +3952,10 @@ input, select, textarea {
 			opacity: 1;
 			visibility: visible;
 		}
+#banner .profile-container {
+  overflow: hidden;
+}
+
 #banner .profile-pic {
   float: left;
   margin: 0 1rem 1rem 0;
