@@ -53,17 +53,26 @@
 									</header>
 
 									<!-- Content -->
-										<h2 id="content">Sample Content</h2>
+										<h2 id="content">Some of My Music!</h2>
+										<p>I love writing all sorts of styles from Jazz and Classical to Hip Hop and Electronic. Attached is a few of the pieces I have wrote.</p>
 										<!-- 🎵 Custom WaveSurfer Player -->
+										<!-- 🎵 YMUSIC – Indecision -->
 										<h3>Now Playing: YMUSIC – Indecision</h3>
-										<div id="waveform" style="margin: 1rem 0; border: 1px solid #ccc; border-radius: 8px; padding: 0.5rem;"></div>
-										<button onclick="wavesurfer.playPause()" class="button small">Play / Pause</button>
-										<!-- 🎵 End Player -->
+										<div id="waveform1" class="waveform-box"></div>
+										<button onclick="wavesurfer1.playPause()" class="button small">Play / Pause</button>
+										<p>Classical Piece Written for String Quartet, Trumpet, Flute, Clarinet</p>
 
-										<p>Praesent ac adipiscing ullamcorper semper ut amet ac risus. Lorem sapien ut odio odio nunc. Ac adipiscing nibh porttitor erat risus justo adipiscing adipiscing amet placerat accumsan. Vis. Faucibus odio magna tempus adipiscing a non. In mi primis arcu ut non accumsan vivamus ac blandit adipiscing adipiscing arcu metus praesent turpis eu ac lacinia nunc ac commodo gravida adipiscing eget accumsan ac nunc adipiscing adipiscing.</p>
-
-										<!-- You can leave the rest of the document unchanged -->
-										<!-- ... all your original page content follows here ... -->
+										<!-- 🎵 Flume Remix – Finally -->
+										<h3>Now Playing: Flume Remix – Finally</h3>
+										<div id="waveform2" class="waveform-box"></div>
+										<button onclick="wavesurfer2.playPause()" class="button small">Play / Pause</button>
+										<p>Future Bass Song Remixed With Flume Vocals</p>
+										<!-- 🎵 After Laughter -->
+										<h3>Now Playing: After Laughter</h3>
+										<div id="waveform3" class="waveform-box"></div>
+										<button onclick="wavesurfer3.playPause()" class="button small">Play / Pause</button>
+										<p>Sample Based Hip Hop Beat Using the Soul Song After Laughter</p>
+									
 
 								</div>
 							</section>
@@ -162,7 +171,30 @@
 
 			  wavesurfer.load('./Attachments/YMUSIC Indecision.mp3');
 			</script>
-			<!-- 🎵 End WaveSurfer Script -->
+			<script>
+			  const wavesurfer = WaveSurfer.create({
+			    container: '#waveform',
+			    waveColor: '#88c0d0',
+			    progressColor: '#5e81ac',
+			    height: 100,
+			    responsive: true
+			  });
+
+			  wavesurfer.load('./Attachments/Flume Remix Finally.mp3');
+			</script>
+
+			</script>
+			<script>
+			  const wavesurfer = WaveSurfer.create({
+			    container: '#waveform',
+			    waveColor: '#88c0d0',
+			    progressColor: '#5e81ac',
+			    height: 100,
+			    responsive: true
+			  });
+
+			  wavesurfer.load('./Attachments/After Laughter.mp3');
+			</script>
 
 	</body>
 </html>
