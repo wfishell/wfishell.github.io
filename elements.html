@@ -161,40 +161,36 @@
 
 			<!-- 🎵 WaveSurfer Script -->
 			<script>
-			  const wavesurfer = WaveSurfer.create({
-			    container: '#waveform',
-			    waveColor: '#88c0d0',
-			    progressColor: '#5e81ac',
-			    height: 100,
-			    responsive: true
-			  });
-
-			  wavesurfer.load('./Attachments/YMUSIC Indecision.mp3');
-			</script>
-			<script>
-			  const wavesurfer = WaveSurfer.create({
-			    container: '#waveform',
-			    waveColor: '#88c0d0',
-			    progressColor: '#5e81ac',
-			    height: 100,
-			    responsive: true
-			  });
-
-			  wavesurfer.load('./Attachments/Flume Remix Finally.mp3');
-			</script>
-
-			</script>
-			<script>
-			  const wavesurfer = WaveSurfer.create({
-			    container: '#waveform',
-			    waveColor: '#88c0d0',
-			    progressColor: '#5e81ac',
-			    height: 100,
-			    responsive: true
-			  });
-
-			  wavesurfer.load('./Attachments/After Laughter.mp3');
-			</script>
+				// Player 1
+				const wavesurfer1 = WaveSurfer.create({
+				  container: '#waveform1',
+				  waveColor: '#88c0d0',
+				  progressColor: '#5e81ac',
+				  height: 100,
+				  responsive: true
+				});
+				wavesurfer1.load('Attachments/YMUSIC Indecision.mp3');
+			  
+				// Player 2
+				const wavesurfer2 = WaveSurfer.create({
+				  container: '#waveform2',
+				  waveColor: '#88c0d0',
+				  progressColor: '#5e81ac',
+				  height: 100,
+				  responsive: true
+				});
+				wavesurfer2.load('Attachments/Flume Remix Finally.mp3');
+			  
+				// Player 3
+				const wavesurfer3 = WaveSurfer.create({
+				  container: '#waveform3',
+				  waveColor: '#88c0d0',
+				  progressColor: '#5e81ac',
+				  height: 100,
+				  responsive: true
+				});
+				wavesurfer3.load('Attachments/After Laughter.mp3');
+			  </script>			  
 
 	</body>
 </html>
