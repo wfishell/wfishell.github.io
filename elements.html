@@ -109,7 +109,7 @@
 
                                         <!-- 🗺️ ADVENTURE MAP -->
                                         <h2 style="margin-top: 3em;">My Adventure Map</h2>
-                                        <p>Interactive map showing trails and rivers I have hiked and paddled, as well as hope for future adventures! Click on markers for details!</p>
+                                        <p>Interactive map showing trails and rivers I have hiked and paddled, as well as ones I hope to traverse for future adventures! Click on markers for details!</p>
                                         <div id="adventure-map"></div>
                                 </div>
                             </section>
@@ -359,23 +359,24 @@
                 });
 
                 // Add legend
-                const legend = L.control({ position: 'bottomright' });
-                legend.onAdd = function(map) {
-                    const div = L.DomUtil.create('div', 'legend');
-                    div.innerHTML = `
-                        <h4>Adventure Legend</h4>
-                        <div class="legend-item">
-                            <span class="legend-color" style="background: #2ecc71;"></span>
-                            <span>Completed</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-color" style="background: #3498db;"></span>
-                            <span>Wishlist</span>
-                        </div>
-                    `;
-                    return div;
-                };
-                legend.addTo(map);
+                // Add legend
+		const legend = L.control({ position: 'bottomright' });
+		legend.onAdd = function(map) {
+			const div = L.DomUtil.create('div', 'legend');
+			div.innerHTML = `
+				<h4 style="margin: 0 0 10px 0; color: #000; font-size: 14px; font-weight: bold;">Adventure Legend</h4>
+				<div class="legend-item" style="margin: 5px 0; color: #000; font-size: 13px;">
+					<span class="legend-color" style="display: inline-block; width: 20px; height: 20px; margin-right: 8px; border-radius: 3px; vertical-align: middle; background: #2ecc71;"></span>
+					<span style="color: #000;">Completed</span>
+				</div>
+				<div class="legend-item" style="margin: 5px 0; color: #000; font-size: 13px;">
+					<span class="legend-color" style="display: inline-block; width: 20px; height: 20px; margin-right: 8px; border-radius: 3px; vertical-align: middle; background: #3498db;"></span>
+					<span style="color: #000;">Wishlist</span>
+				</div>
+			`;
+			return div;
+		};
+		legend.addTo(map);
             </script>
 
     </body>
