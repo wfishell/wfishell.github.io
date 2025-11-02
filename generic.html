@@ -143,49 +143,66 @@
 					<section id="contact">
 						<div class="inner">
 							<section>
-								<form method="post" action="#">
+								<!-- ✅ UPDATED FORMSPREE FORM -->
+								<form action="https://formspree.io/f/xrboovjw" method="POST">
 									<div class="fields">
 										<div class="field half">
 											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
+											<input type="text" name="name" id="name" required />
 										</div>
 										<div class="field half">
 											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
+											<input type="email" name="email" id="email" required />
 										</div>
 										<div class="field">
 											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="6"></textarea>
+											<textarea name="message" id="message" rows="6" required></textarea>
 										</div>
 									</div>
+
+									<p id="form-status" style="color:#90EE90; display:none;">✅ Message sent — thanks for reaching out!</p>
+
 									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><button type="submit" class="primary">Send Message</button></li>
 										<li><input type="reset" value="Clear" /></li>
 									</ul>
 								</form>
+
+								<script>
+								const form = document.querySelector("form");
+								const status = document.getElementById("form-status");
+
+								form.addEventListener("submit", async (e) => {
+									e.preventDefault();
+									const data = new FormData(form);
+									const response = await fetch(form.action, {
+										method: form.method,
+										body: data,
+										headers: { 'Accept': 'application/json' }
+									});
+									if (response.ok) {
+										status.style.display = "block";
+										form.reset();
+									} else {
+										alert("❌ Error sending message. Please try again.");
+									}
+								});
+								</script>
+								<!-- ✅ END FORMSPREE PATCH -->
 							</section>
 							<section class="split">
 								<section>
 									<div class="contact-method">
 										<span class="icon solid alt fa-envelope"></span>
 										<h3>Email</h3>
-										<a href="#">information@untitled.tld</a>
+										<a href="mailto:wf2322@columbia.edu">wf2322@columbia.edu</a>
 									</div>
 								</section>
 								<section>
 									<div class="contact-method">
 										<span class="icon solid alt fa-phone"></span>
-										<h3>Phone</h3>
-										<span>(000) 000-0000 x12387</span>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-home"></span>
-										<h3>Address</h3>
-										<span>1234 Somewhere Road #5432<br />
-										Nashville, TN 00000<br />
-										United States of America</span>
+										<h3>LinkedIn</h3>
+										<a href="https://www.linkedin.com/in/will-fishell-866575167/" target="_blank" rel="noopener">William Fishell Linkedin</a>
 									</div>
 								</section>
 							</section>
