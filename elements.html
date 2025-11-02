@@ -14,6 +14,39 @@
 
         <!-- Include WaveSurfer -->
         <script src="https://unpkg.com/wavesurfer.js"></script>
+        
+        <!-- Include Leaflet for Interactive Map -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        
+        <style>
+            #adventure-map {
+                height: 600px;
+                width: 100%;
+                margin-top: 2em;
+                border-radius: 4px;
+            }
+            .legend {
+                background: white;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+            }
+            .legend h4 {
+                margin: 0 0 10px 0;
+            }
+            .legend-item {
+                margin: 5px 0;
+            }
+            .legend-color {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin-right: 8px;
+                border-radius: 3px;
+                vertical-align: middle;
+            }
+        </style>
     </head>
     <body class="is-preload">
 
@@ -73,6 +106,11 @@
                                         <div id="waveform3" class="waveform-box"></div>
                                         <button onclick="wavesurfer3.playPause()" class="button small">Play / Pause</button>
                                         <p>Sample Based Hip Hop Beat Using the Soul Song After Laughter</p>
+
+                                        <!-- 🗺️ ADVENTURE MAP -->
+                                        <h2 style="margin-top: 3em;">My Adventure Map</h2>
+                                        <p>Interactive map showing trails I've hiked and rivers I've paddled across North and South America. Click on markers for details!</p>
+                                        <div id="adventure-map"></div>
                                 </div>
                             </section>
 
@@ -171,6 +209,123 @@
 
                 const wavesurfer3 = WaveSurfer.create({ container: '#waveform3', waveColor: '#88c0d0', progressColor: '#5e81ac', height: 100, responsive: true });
                 wavesurfer3.load('Attachments/After Laughter.mp3');
+            </script>
+
+            <!-- 🗺️ Adventure Map Script -->
+            <script>
+                // Initialize the map centered on North America
+                const map = L.map('adventure-map').setView([45, -95], 3);
+
+                // Add OpenStreetMap tiles
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors',
+                    maxZoom: 18
+                }).addTo(map);
+
+                // Custom icons
+                const completedIcon = L.icon({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                });
+
+                const wishlistIcon = L.icon({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                });
+
+                // COMPLETED ADVENTURES (Green)
+                const completed = [
+                    // Canada - Rivers & Parks
+                    { name: "Dumoine River", coords: [46.2, -77.6], type: "River Paddling", region: "Quebec, Canada" },
+                    { name: "Kazan River", coords: [62.5, -100.0], type: "River Paddling", region: "Nunavut, Canada" },
+                    { name: "Spanish River", coords: [46.1, -81.8], type: "River Paddling", region: "Ontario, Canada" },
+                    { name: "Algonquin Provincial Park", coords: [45.5, -78.3], type: "Paddling/Camping", region: "Ontario, Canada" },
+                    { name: "Wabakimi Provincial Park", coords: [50.5, -90.0], type: "Paddling/Camping", region: "Ontario, Canada" },
+                    { name: "Georgian Bay", coords: [45.0, -80.5], type: "Paddling", region: "Ontario, Canada" },
+                    { name: "Temagami Park", coords: [47.0, -80.0], type: "Paddling/Camping", region: "Ontario, Canada" },
+                    
+                    // USA - Trails
+                    { name: "PCT Section J", coords: [41.5, -122.0], type: "Hiking", region: "California/Oregon Border, USA", desc: "Pacific Crest Trail Section J" },
+                    
+                    // Chile
+                    { name: "Futaleufú River", coords: [-43.2, -71.9], type: "River Paddling", region: "Chilean Patagonia" },
+                    { name: "Torres del Paine", coords: [-51.0, -73.0], type: "Hiking", region: "Chilean Patagonia" }
+                ];
+
+                // Add the Appalachian Trail as a polyline (green)
+                const appalachianTrailCoords = [
+                    [34.626, -84.193],  // Springer Mountain, GA (start)
+                    [35.5, -83.5],      // Great Smoky Mountains
+                    [36.5, -82.0],      // Virginia/Tennessee
+                    [37.5, -80.0],      // Central Virginia
+                    [39.3, -77.7],      // Maryland
+                    [40.0, -76.0],      // Pennsylvania
+                    [41.3, -74.7],      // New York
+                    [42.5, -73.2],      // Vermont
+                    [43.5, -71.5],      // New Hampshire
+                    [45.904, -68.921]   // Mount Katahdin, ME (end)
+                ];
+
+                L.polyline(appalachianTrailCoords, {
+                    color: '#2ecc71',
+                    weight: 4,
+                    opacity: 0.8
+                }).addTo(map).bindPopup('<b>Appalachian Trail</b><br>Entire Trail Completed<br>~2,190 miles from Georgia to Maine');
+
+                // Add completed markers
+                completed.forEach(location => {
+                    const marker = L.marker(location.coords, { icon: completedIcon }).addTo(map);
+                    marker.bindPopup(`
+                        <b>${location.name}</b><br>
+                        <i>${location.type}</i><br>
+                        ${location.region}
+                        ${location.desc ? '<br>' + location.desc : ''}
+                    `);
+                });
+
+                // WISHLIST ADVENTURES (Blue) - Add your wishlist locations here
+                const wishlist = [
+                    { name: "John Muir Trail", coords: [37.7, -119.3], type: "Hiking", region: "California, USA" },
+                    { name: "Colorado River", coords: [36.1, -112.1], type: "River Paddling", region: "Grand Canyon, USA" },
+                    { name: "Nahanni River", coords: [61.5, -125.5], type: "River Paddling", region: "Northwest Territories, Canada" }
+                ];
+
+                wishlist.forEach(location => {
+                    const marker = L.marker(location.coords, { icon: wishlistIcon }).addTo(map);
+                    marker.bindPopup(`
+                        <b>${location.name}</b><br>
+                        <i>${location.type}</i><br>
+                        ${location.region}<br>
+                        <em>Wishlist</em>
+                    `);
+                });
+
+                // Add legend
+                const legend = L.control({ position: 'bottomright' });
+                legend.onAdd = function(map) {
+                    const div = L.DomUtil.create('div', 'legend');
+                    div.innerHTML = `
+                        <h4>Adventure Legend</h4>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #2ecc71;"></span>
+                            <span>Completed</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #3498db;"></span>
+                            <span>Wishlist</span>
+                        </div>
+                    `;
+                    return div;
+                };
+                legend.addTo(map);
             </script>
 
     </body>
