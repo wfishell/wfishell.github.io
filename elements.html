@@ -244,20 +244,20 @@
                 // COMPLETED ADVENTURES (Green)
                 const completed = [
                     // Canada - Rivers & Parks
-                    { name: "Dumoine River", coords: [46.2, -77.6], type: "River Paddling", region: "Quebec, Canada" },
-                    { name: "Kazan River", coords: [62.5, -100.0], type: "River Paddling", region: "Nunavut, Canada" },
-                    { name: "Spanish River", coords: [46.1, -81.8], type: "River Paddling", region: "Ontario, Canada" },
-                    { name: "Algonquin Provincial Park", coords: [45.5, -78.3], type: "Paddling/Camping", region: "Ontario, Canada" },
-                    { name: "Wabakimi Provincial Park", coords: [50.5, -90.0], type: "Paddling/Camping", region: "Ontario, Canada" },
-                    { name: "Georgian Bay", coords: [45.0, -80.5], type: "Paddling", region: "Ontario, Canada" },
-                    { name: "Temagami Park", coords: [47.0, -80.0], type: "Paddling/Camping", region: "Ontario, Canada" },
+                    { name: "Dumoine River", coords: [46.2, -77.6], type: "River Paddling", region: "Dumoine River, Quebec, Canada" },
+                    { name: "Kazan River", coords: [62.5, -100.0], type: "River Paddling", region: "Kazan River, Nunavut, Canada" },
+                    { name: "Spanish River", coords: [46.1, -81.8], type: "River Paddling", region: "Spanish River, Ontario, Canada" },
+                    { name: "Algonquin Provincial Park", coords: [45.5, -78.3], type: "Paddling/Camping", region: "Algonquin Provincial Park, Ontario, Canada" },
+                    { name: "Wabakimi Provincial Park", coords: [50.5, -90.0], type: "Paddling/Camping", region: "Wabakimi Provincial Park, Ontario, Canada" },
+                    { name: "Georgian Bay", coords: [45.0, -80.5], type: "Paddling", region: "Georgian Bay, Ontario, Canada" },
+                    { name: "Temagami Park", coords: [47.0, -80.0], type: "Paddling/Camping", region: "Temagami Park, Ontario, Canada" },
                     
                     // USA - Trails
                     { name: "PCT Section J", coords: [41.5, -122.0], type: "Hiking", region: "California/Oregon Border, USA", desc: "Pacific Crest Trail Section J" },
                     
                     // Chile
-                    { name: "Futaleufú River", coords: [-43.2, -71.9], type: "River Paddling", region: "Chilean Patagonia" },
-                    { name: "Torres del Paine", coords: [-51.0, -73.0], type: "Hiking", region: "Chilean Patagonia" }
+                    { name: "Futaleufú River", coords: [-43.2, -71.9], type: "River Paddling", region: "Futaleufú River, Chilean Patagonia" },
+                    { name: "Torres del Paine", coords: [-51.0, -73.0], type: "Hiking", region: "Torres del Paine, Chilean Patagonia" }
                 ];
 
                 // Add the Appalachian Trail as a polyline (green)
@@ -280,6 +280,69 @@
                     opacity: 0.8
                 }).addTo(map).bindPopup('<b>Appalachian Trail</b><br>Entire Trail Completed<br>~2,190 miles from Georgia to Maine');
 
+				const caminoCoords = [
+				[43.0, -1.5],      // Saint-Jean-Pied-de-Port, France (start)
+				[42.8, -2.7],      // Pamplona
+				[42.5, -3.5],      // Burgos
+				[42.6, -5.6],      // León
+				[42.88, -8.54]     // Santiago de Compostela (end)
+			];
+
+			L.polyline(caminoCoords, {
+				color: '#3498db',
+				weight: 4,
+				opacity: 0.8
+			}).addTo(map).bindPopup('<b>Camino de Santiago</b><br>Wishlist<br>~500 miles across northern Spain');
+
+			// Pacific Crest Trail
+			const pctCoords = [
+				[32.6, -116.5],    // Campo, CA (southern terminus)
+				[34.0, -117.0],    // Southern California
+				[36.5, -118.5],    // Sierra Nevada
+				[37.7, -119.3],    // Yosemite area
+				[39.0, -120.0],    // Northern California
+				[41.5, -122.0],    // California/Oregon border
+				[43.0, -121.5],    // Central Oregon
+				[45.5, -121.5],    // Northern Oregon
+				[46.5, -121.0],    // Washington Cascades
+				[48.7, -120.8]     // Manning Park, Canada (northern terminus)
+			];
+
+			L.polyline(pctCoords, {
+				color: '#3498db',
+				weight: 4,
+				opacity: 0.8
+			}).addTo(map).bindPopup('<b>Pacific Crest Trail (PCT)</b><br>Wishlist<br>~2,650 miles from Mexico to Canada');
+
+			// Colorado Trail
+			const coloradoTrailCoords = [
+				[39.47, -105.04],  // Denver/Waterton Canyon (start)
+				[39.3, -105.5],    // Colorado Front Range
+				[39.0, -106.5],    // Central Rockies
+				[38.5, -106.8],    // Collegiate Peaks
+				[37.8, -107.6]     // Durango area (end)
+			];
+
+			L.polyline(coloradoTrailCoords, {
+				color: '#3498db',
+				weight: 4,
+				opacity: 0.8
+			}).addTo(map).bindPopup('<b>Colorado Trail</b><br>Wishlist<br>~485 miles through the Colorado Rockies');
+
+			// Appian Way (Via Appia)
+			const appianWayCoords = [
+				[41.87, 12.52],    // Rome (start)
+				[41.7, 12.7],      // Castelli Romani
+				[41.4, 13.1],      // Terracina
+				[41.0, 13.8],      // Formia
+				[40.85, 14.25]     // Capua/Brindisi region (end)
+			];
+
+			L.polyline(appianWayCoords, {
+				color: '#3498db',
+				weight: 4,
+				opacity: 0.8
+			}).addTo(map).bindPopup('<b>Appian Way (Via Appia)</b><br>Wishlist<br>Ancient Roman road from Rome to Brindisi');
                 // Add completed markers
                 completed.forEach(location => {
                     const marker = L.marker(location.coords, { icon: completedIcon }).addTo(map);
@@ -293,9 +356,9 @@
 
                 // WISHLIST ADVENTURES (Blue) - Add your wishlist locations here
                 const wishlist = [
-                    { name: "John Muir Trail", coords: [37.7, -119.3], type: "Hiking", region: "California, USA" },
-                    { name: "Colorado River", coords: [36.1, -112.1], type: "River Paddling", region: "Grand Canyon, USA" },
-                    { name: "Nahanni River", coords: [61.5, -125.5], type: "River Paddling", region: "Northwest Territories, Canada" }
+                    { name: "John Muir Trail", coords: [37.7, -119.3], type: "Hiking", region: "John Muir Trail, California, USA" },
+                    { name: "Colorado River", coords: [36.1, -112.1], type: "River Paddling", region: "Colorado River, Arizona, USA" },
+                    { name: "Nahanni River", coords: [61.5, -125.5], type: "River Paddling", region: "Nahanni River, Northwest Territories, Canada" }
                 ];
 
                 wishlist.forEach(location => {
