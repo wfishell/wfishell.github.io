@@ -11,6 +11,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        
+        <!-- Include WaveSurfer -->
+        <script src="https://unpkg.com/wavesurfer.js"></script>
     </head>
     <body class="is-preload">
 
@@ -67,6 +70,12 @@
                                      <p>
                                           <a href="./Attachments/mlr1_tempobench.pdf" target="_blank" download>OOPSLA 2026 Submission</a>
                                     </p>
+
+                                    <!-- 🎵 AI Generated Podcast -->
+                                    <h3>AI Generated Podcast For Paper</h3>
+                                    <div id="waveform-tempobench" class="waveform-box"></div>
+                                    <button onclick="wavesurferTempobench.playPause()" class="button small">Play / Pause</button>
+                                    <p>AI-generated podcast discussion of the TempoBench paper</p>
                                 </div>
                             </section>
 
@@ -247,6 +256,18 @@ form.addEventListener("submit", async (e) => {
             <script src="assets/js/breakpoints.min.js"></script>
             <script src="assets/js/util.js"></script>
             <script src="assets/js/main.js"></script>
+
+            <!-- 🎵 WaveSurfer Script for TempoBench Podcast -->
+            <script>
+                const wavesurferTempobench = WaveSurfer.create({ 
+                    container: '#waveform-tempobench', 
+                    waveColor: '#88c0d0', 
+                    progressColor: '#5e81ac', 
+                    height: 100, 
+                    responsive: true 
+                });
+                wavesurferTempobench.load('./Attachments/Tempo_Bench_podcast.mp3');
+            </script>
 
     </body>
 </html>
